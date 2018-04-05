@@ -1,0 +1,38 @@
+
+public class Burger {
+	
+	private boolean myWorks;
+	
+	Burger(boolean theWorks)	{
+		myWorks = theWorks;
+	}
+	
+	public void changePatties(String pattyType)	{
+		
+	}
+	
+	public void addPatty()	{
+		
+	}
+	
+	public void addCategory(String type) {
+		
+	}
+	
+	public void removeCategory(String type) {
+		
+	}
+	
+	public void addIngredient(String type)	{
+		
+	}
+	
+	public void removeIngredient(String type)	{
+		
+	}
+	
+	@Override
+	public String toString()	{
+		return "";
+	}
+}

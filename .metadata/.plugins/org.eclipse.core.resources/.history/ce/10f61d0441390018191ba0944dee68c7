@@ -42,10 +42,7 @@ public class Burger {
 	
 	private MyStack myStack;
 	
-	private boolean myWorks;
-	
 	Burger(boolean theWorks)	{
-		myWorks = theWorks;
 		if(theWorks)	{ //creates baron burger
 			myStack.push(BOT_BUN);
 			myStack.push(KETCHUP);
@@ -71,22 +68,7 @@ public class Burger {
 	}
 	
 	public void changePatties(String pattyType)	{
-		MyStack tempStack = new MyStack();
-		MyStack endStack = new MyStack();
-		String item;
-		while(!myStack.isEmpty())	{
-			item = myStack.pop();
-			if(item.equals(BEEF_PATTY) || item.equals(VEGGIE_PATTY) 
-					|| item.equals(CHICKEN_PATTY)) {
-				tempStack.push(pattyType);	
-			} else {
-				tempStack.push(item);
-			}
-		}
-		while(!tempStack.isEmpty())	{
-			endStack.push(tempStack.pop());
-		}
-		myStack = endStack;
+		
 	}
 	
 	public void addPatty()	{
@@ -111,7 +93,7 @@ public class Burger {
 	
 	@Override
 	public String toString()	{
-		return myStack.toString();
+		return "";
 	}
 	
 }

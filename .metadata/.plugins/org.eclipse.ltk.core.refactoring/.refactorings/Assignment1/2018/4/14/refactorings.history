@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;pattyType&apos; in &apos;Burger.changePatties(...)&apos; to &apos;thePatty&apos;&#x0D;&#x0A;- Original project: &apos;Assignment1&apos;&#x0D;&#x0A;- Original element: &apos;Burger.changePatties(String).pattyType&apos;&#x0D;&#x0A;- Renamed element: &apos;pattyType&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;pattyType&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Burger.java[Burger~changePatties~QString;@pattyType!1827!1842!1834!1842!QString;!0!true" name="thePatty" references="true" stamp="1522981360037" version="1.0"/>
+</session>

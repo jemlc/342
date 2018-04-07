@@ -40,7 +40,7 @@ public class Burger {
 	
 	private static final String BARON_SAUCE = "Baron Sauce";
 	
-	private MyStack<String> myStack;
+	private MyStack myStack;
 	
 	private boolean myWorks;
 	
@@ -71,8 +71,8 @@ public class Burger {
 	}
 	
 	public void changePatties(String thePatty)	{
-		MyStack<String> tempStack = new MyStack<String>();
-		MyStack<String> endStack = new MyStack<String>();
+		MyStack tempStack = new MyStack();
+		MyStack endStack = new MyStack();
 		String item;
 		while(!myStack.isEmpty())	{
 			item = myStack.pop();
@@ -90,9 +90,7 @@ public class Burger {
 	}
 	
 	public void addPatty()	{
-		if(myWorks)	{
-			
-		}
+		
 	}
 	
 	public void addCategory(String theItem) {

@@ -3,9 +3,9 @@
  * Author: Jeremy Manandic
  * Citations:
  */
-public class MyStack<T> {
+public class MyStack {
 	
-	private Node<T> myTop;
+	private Node myTop;
 	
 	MyStack()	{
 	}
@@ -14,21 +14,21 @@ public class MyStack<T> {
 		return myTop == null;
 	}
 	
-	public void push(T item)	{
+	public void push(String item)	{
 		if(myTop == null)	{
-			Node<T> createdNode = new Node<T>(item);
+			Node createdNode = new Node(item);
 			myTop = createdNode;
 		} else {
-			Node<T> aNode = new Node<T>(item);
+			Node aNode = new Node(item);
 			aNode.next = myTop;
 			myTop = aNode;
 		}
 	}
 	
-	public T pop()	{
-		T item;
+	public String pop()	{
+		String item;
 		if(myTop == null)	{
-			item = null;
+			item = "Nothing on top";
 		} else	{
 			item = myTop.myItem;
 			myTop = myTop.next;
@@ -36,13 +36,13 @@ public class MyStack<T> {
 		return item;
 	}
 	
-	public T peek()	{
+	public String peek()	{
 		return myTop.myItem;
 	}
 	
 	public int size()	{
 		int nodeCounter = 0;
-		Node<T> currentNode = myTop;
+		Node currentNode = myTop;
 		while(currentNode != null)	{
 			nodeCounter++;
 			currentNode = currentNode.next;
@@ -53,7 +53,7 @@ public class MyStack<T> {
 	@Override
 	public String toString()	{
 		StringBuilder sb = new StringBuilder();
-		Node<T> currentNode = myTop;
+		Node currentNode = myTop;
 		while(currentNode != null)	{
 			sb.append(currentNode.myItem);
 			currentNode = currentNode.next;
@@ -62,10 +62,10 @@ public class MyStack<T> {
 		
 	}
 	
-	private static class Node<T>	{
-		private T myItem;
-		private Node<T> next;
-		private Node(T theItem) {
+	private static class Node	{
+		private String myItem;
+		private Node next;
+		private Node(String theItem) {
 			myItem = theItem;
 		}
 	}

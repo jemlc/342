@@ -40,7 +40,7 @@ public class Burger {
 	
 	private static final String BARON_SAUCE = "Baron Sauce";
 	
-	private MyStack<String> myStack;
+	private MyStack myStack;
 	
 	private boolean myWorks;
 	
@@ -70,15 +70,15 @@ public class Burger {
 		}
 	}
 	
-	public void changePatties(String thePatty)	{
-		MyStack<String> tempStack = new MyStack<String>();
-		MyStack<String> endStack = new MyStack<String>();
+	public void changePatties(String pattyType)	{
+		MyStack tempStack = new MyStack();
+		MyStack endStack = new MyStack();
 		String item;
 		while(!myStack.isEmpty())	{
 			item = myStack.pop();
 			if(item.equals(BEEF_PATTY) || item.equals(VEGGIE_PATTY) 
 					|| item.equals(CHICKEN_PATTY)) {
-				tempStack.push(thePatty);	
+				tempStack.push(pattyType);	
 			} else {
 				tempStack.push(item);
 			}
@@ -90,24 +90,22 @@ public class Burger {
 	}
 	
 	public void addPatty()	{
-		if(myWorks)	{
-			
-		}
-	}
-	
-	public void addCategory(String theItem) {
 		
 	}
 	
-	public void removeCategory(String theItem) {
+	public void addCategory(String type) {
 		
 	}
 	
-	public void addIngredient(String theitem)	{
+	public void removeCategory(String type) {
 		
 	}
 	
-	public void removeIngredient(String theItem)	{
+	public void addIngredient(String type)	{
+		
+	}
+	
+	public void removeIngredient(String type)	{
 		
 	}
 	

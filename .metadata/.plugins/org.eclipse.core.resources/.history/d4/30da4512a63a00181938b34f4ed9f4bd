@@ -328,16 +328,7 @@ public class Burger {
 	}
 	
 	public void removeIngredient(String theItem)	{
-		MyStack<String> tempStack = new MyStack<String>();
-		while(!myStack.isEmpty())	{
-			String item = myStack.pop();
-			if(!item.equals(theItem))	{
-				tempStack.push(item);
-			}
-		}
-		while(!tempStack.isEmpty()) {
-			myStack.push(tempStack.pop());
-		}
+		
 	}
 	
 	@Override

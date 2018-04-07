@@ -1,0 +1,74 @@
+/*
+ * MyStack class
+ * Author: Jeremy Manandic
+ * Citations:
+ */
+public class MyStack {
+	
+	private Node myTop;
+	
+	MyStack()	{
+	}
+	
+	public boolean isEmpty()	{
+		return myTop == null;
+	}
+	
+	public void push(String item)	{
+		if(myTop == null)	{
+			Node createdNode = new Node(item);
+			myTop = createdNode;
+		} else {
+			Node aNode = new Node(item);
+			aNode.next = myTop;
+			myTop = aNode;
+		}
+	}
+	
+	public String pop()	{
+		String item;
+		if(myTop == null)	{
+			item = "Nothing on top";
+		} else	{
+			item = myTop.myItem;
+			myTop = myTop.next;
+		}
+		return item;
+	}
+	
+	public String peek()	{
+		return myTop.myItem;
+	}
+	
+	public int size()	{
+		int nodeCounter = 0;
+		Node currentNode = myTop;
+		while(currentNode != null)	{
+			nodeCounter++;
+			currentNode = currentNode.next;
+		}
+		return nodeCounter;
+	}
+	
+	@Override
+	public String toString()	{
+		StringBuilder sb = new StringBuilder();
+		Node currentNode = myTop;
+		while(currentNode != null)	{
+			sb.append(currentNode.myItem);
+			currentNode = currentNode.next;
+		}
+		return sb.toString();
+		
+	}
+	
+	private static class Node	{
+		private String myItem;
+		private Node next;
+		private Node(String theItem) {
+			myItem = theItem;
+		}
+	}
+
+}
+

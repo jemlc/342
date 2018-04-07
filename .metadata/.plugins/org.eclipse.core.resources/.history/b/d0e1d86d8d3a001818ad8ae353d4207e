@@ -128,59 +128,9 @@ public class Burger {
 	}
 	
 	public void addCategory(String theItem) {
-		MyStack<String> tempStack = new MyStack<String>();
 		if(!myWorks)	{
 			if(theItem == CHEESE)	{
-				while(!myStack.isEmpty()) {
-					String item = myStack.pop();
-					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
-							|| item.equals(VEGGIE_PATTY))	{
-						tempStack.push(CHEDDER);
-						tempStack.push(MOZZARELLA);
-						tempStack.push(PEPPERJACK);
-						tempStack.push(item);
-					} else	{
-						tempStack.push(item);
-					}
-				}
-				while(!tempStack.isEmpty())	{
-					myStack.push(tempStack.pop());
-				}
-			} else if(theItem == VEGGIES)	{
-				while(!myStack.isEmpty()) {
-					String item = myStack.pop();
-					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
-							|| item.equals(VEGGIE_PATTY))	{
-						tempStack.push(MUSHROOMS);
-						tempStack.push(PICKLE);
-						tempStack.push(ONIONS);
-						tempStack.push(TOMATO);
-						tempStack.push(LETTUCE);
-						tempStack.push(item);
-					} else	{
-						tempStack.push(item);
-					}
-				}
-				while(!tempStack.isEmpty())	{
-					myStack.push(tempStack.pop());
-				}
-			} else if(theItem == SAUCES)	{
-				while(!myStack.isEmpty()) {
-					String item = myStack.pop();
-					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
-							|| item.equals(VEGGIE_PATTY))	{
-						tempStack.push(BARON_SAUCE);
-						tempStack.push(MAYONNAISE);
-						tempStack.push(MUSTARD);
-						tempStack.push(KETCHUP);
-						tempStack.push(item);
-					} else	{
-						tempStack.push(item);
-					}
-				}
-				while(!tempStack.isEmpty())	{
-					myStack.push(tempStack.pop());
-				}
+				
 			}
 		}
 	}

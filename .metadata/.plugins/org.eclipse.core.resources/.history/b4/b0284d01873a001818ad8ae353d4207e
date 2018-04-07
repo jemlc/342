@@ -40,13 +40,6 @@ public class Burger {
 	
 	private static final String BARON_SAUCE = "Baron Sauce";
 	
-	//Categories
-	private static final String CHEESE = "Cheese";
-	
-	private static final String VEGGIES = "Veggies";
-	
-	private static final String SAUCES = "Sauces";
-	
 	private MyStack<String> myStack;
 	
 	private boolean myWorks;
@@ -128,11 +121,7 @@ public class Burger {
 	}
 	
 	public void addCategory(String theItem) {
-		if(!myWorks)	{
-			if(theItem == CHEESE)	{
-				
-			}
-		}
+		
 	}
 	
 	public void removeCategory(String theItem) {

@@ -40,13 +40,6 @@ public class Burger {
 	
 	private static final String BARON_SAUCE = "Baron Sauce";
 	
-	//Categories
-	private static final String CHEESE = "Cheese";
-	
-	private static final String VEGGIES = "Veggies";
-	
-	private static final String SAUCES = "Sauces";
-	
 	private MyStack<String> myStack;
 	
 	private boolean myWorks;
@@ -97,42 +90,22 @@ public class Burger {
 	public void addPatty()	{
 		MyStack<String> tempStack = new MyStack<String>();
 		String item;
-		if(myWorks) {
-			while(!myStack.isEmpty())	{
-				item = myStack.pop();
-				if(item.equals(PEPPERJACK))	{
-					tempStack.push(BEEF_PATTY);
-					tempStack.push(item);
-				} else	{
-					tempStack.push(item);
-				}
-			} 
-			while(!tempStack.isEmpty())	{
-				myStack.push(tempStack.pop());
+		while(!myStack.isEmpty())	{
+			item = myStack.pop();
+			if(item.equals(PEPPERJACK))	{
+				tempStack.push(BEEF_PATTY);
+				tempStack.push(item);
+			} else	{
+				tempStack.push(item);
 			}
-		} else	{
-			while(!myStack.isEmpty())	{
-				item = myStack.pop();
-				if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY) 
-						|| item.equals(VEGGIE_PATTY))	{
-					tempStack.push(BEEF_PATTY);
-					tempStack.push(item);
-				} else	{
-					tempStack.push(item);
-				}
-			}
-			while(!tempStack.isEmpty())	{
-				myStack.push(tempStack.pop());
-			}
+		} 
+		while(!tempStack.isEmpty())	{
+			myStack.push(tempStack.pop());
 		}
 	}
 	
 	public void addCategory(String theItem) {
-		if(!myWorks)	{
-			if(theItem == CHEESE)	{
-				
-			}
-		}
+		
 	}
 	
 	public void removeCategory(String theItem) {

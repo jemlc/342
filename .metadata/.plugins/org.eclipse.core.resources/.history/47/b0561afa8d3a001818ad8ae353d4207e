@@ -130,7 +130,7 @@ public class Burger {
 	public void addCategory(String theItem) {
 		MyStack<String> tempStack = new MyStack<String>();
 		if(!myWorks)	{
-			if(theItem.equals(CHEESE))	{
+			if(theItem == CHEESE)	{
 				while(!myStack.isEmpty()) {
 					String item = myStack.pop();
 					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
@@ -146,7 +146,7 @@ public class Burger {
 				while(!tempStack.isEmpty())	{
 					myStack.push(tempStack.pop());
 				}
-			} else if(theItem.equals(VEGGIES))	{
+			} else if(theItem == VEGGIES)	{
 				while(!myStack.isEmpty()) {
 					String item = myStack.pop();
 					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
@@ -164,7 +164,7 @@ public class Burger {
 				while(!tempStack.isEmpty())	{
 					myStack.push(tempStack.pop());
 				}
-			} else if(theItem.equals(SAUCES))	{
+			} else if(theItem == SAUCES)	{
 				while(!myStack.isEmpty()) {
 					String item = myStack.pop();
 					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)

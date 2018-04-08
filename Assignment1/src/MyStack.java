@@ -37,7 +37,13 @@ public class MyStack<T> {
 	}
 	
 	public T peek()	{
-		return myTop.myItem;
+		T item;
+		if(myTop == null)	{
+			item = null;
+		} else	{
+			item = myTop.myItem;
+		}
+		return item;
 	}
 	
 	public int size()	{
@@ -55,6 +61,9 @@ public class MyStack<T> {
 		StringBuilder sb = new StringBuilder();
 		Node<T> currentNode = myTop;
 		while(currentNode != null)	{
+			if(sb.length() > 0)	{
+				sb.append(", ");
+			}
 			sb.append(currentNode.myItem);
 			currentNode = currentNode.next;
 		}

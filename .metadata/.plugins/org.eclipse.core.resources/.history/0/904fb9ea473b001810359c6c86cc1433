@@ -1,0 +1,21 @@
+
+public class BurgerMain {
+	
+	public static void main(String[] theArgs)	{
+		new BurgerMain().testMyStack();
+	}
+	
+	public void parseLine(String line)	{
+		
+	}
+	
+	public void testMyStack()	{
+		MyStack<String> stack = new MyStack<String>();
+		stack.push("test item");
+		System.out.println(stack.peek());
+	}
+	
+	public void testBurger()	{
+		
+	}
+}

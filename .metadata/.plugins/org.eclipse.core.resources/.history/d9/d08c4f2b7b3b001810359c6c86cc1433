@@ -1,0 +1,424 @@
+
+public class Burger {
+	//Ingredients
+	//Buns
+	/**
+	 * String constant that represents the top bun.
+	 */
+	private static final String TOP_BUN = "Top Bun";
+	
+	/**
+	 * String constant that represents the bottom bun.
+	 */
+	private static final String BOT_BUN = "Bottom Bun";
+	
+	//Patties
+	/**
+	 * String constant that represents a beef patty.
+	 */
+	private static final String BEEF_PATTY = "Beef Patty";
+	
+	/**
+	 * String constant that represents a chicken patty.
+	 */
+	private static final String CHICKEN_PATTY = "Chicken Patty";
+	
+	/**
+	 * String constant that represents a veggie patty.
+	 */
+	private static final String VEGGIE_PATTY = "Veggie Patty";
+	
+	//Cheese
+	/**
+	 * String constant that represents cheddar.
+	 */
+	private static final String CHEDDER = "Cheddar";
+	
+	/**
+	 * String constant that represents mozzarella.
+	 */
+	private static final String MOZZARELLA = "Mozzarella";
+	
+	/**
+	 * String constant that represents pepperjack.
+	 */
+	private static final String PEPPERJACK = "Pepperjack";
+	
+	//Veggies
+	/**
+	 * String constant that represents lettuce.
+	 */
+	private static final String LETTUCE = "Lettuce";
+	
+	/**
+	 * String constant that represents a tomato.
+	 */
+	private static final String TOMATO = "Tomato";
+	
+	/**
+	 * String constant that represents onions.
+	 */
+	private static final String ONIONS = "Onions";
+	
+	/**
+	 * String constant that represents a pickle
+	 */
+	private static final String PICKLE = "Pickle";
+	
+	/**
+	 * String constant that represents mushrooms
+	 */
+	private static final String MUSHROOMS = "Mushrooms";
+	
+	//Sauces
+	/**
+	 * String constant that represents ketchup.
+	 */
+	private static final String KETCHUP = "Ketchup";
+	
+	/**
+	 * String constant that represents mustard.
+	 */
+	private static final String MUSTARD = "Mustard";
+	
+	/**
+	 * String constant that represents mayonnaise.
+	 */
+	private static final String MAYONNAISE = "Mayonnaise";
+	
+	/**
+	 * String constant that represents baron sauce.
+	 */
+	private static final String BARON_SAUCE = "Baron Sauce";
+	
+	//Categories
+	/**
+	 * String constant that represents cheese
+	 */
+	private static final String CHEESE = "Cheese";
+	
+	/**
+	 * String constant that represents veggies.
+	 */
+	private static final String VEGGIES = "Veggies";
+	
+	/**
+	 * String constant that represents sauces.
+	 */
+	private static final String SAUCE = "Sauce";
+	
+	/**
+	 * Custom stack class which creates a stack that will represent the burger.
+	 */
+	private MyStack<String> myStack;
+	
+	/**
+	 * A boolean to determine if the burger being created is a baron burger.
+	 */
+	private boolean myWorks;
+	
+	/**
+	 * Burger constructor which either creates a baron burger stack or a 
+	 * regular burger by default.
+	 * @param theWorks - boolean to determine if its a baron burger.
+	 */
+	Burger(boolean theWorks)	{
+		myWorks = theWorks;
+		myStack = new MyStack<String>();
+		if(theWorks)	{ //creates baron burger
+			myStack.push(BOT_BUN);
+			myStack.push(KETCHUP);
+			myStack.push(MUSTARD);
+			myStack.push(MUSHROOMS);
+			myStack.push(BEEF_PATTY);
+			myStack.push(CHEDDER);
+			myStack.push(MOZZARELLA);
+			myStack.push(PEPPERJACK);
+			myStack.push(ONIONS);
+			myStack.push(TOMATO);
+			myStack.push(LETTUCE);
+			myStack.push(BARON_SAUCE);
+			myStack.push(MAYONNAISE);
+			myStack.push(TOP_BUN);
+			myStack.push(PICKLE);
+		} else	{ //creates basic burger
+			myStack.push(BOT_BUN);
+			myStack.push(BEEF_PATTY);
+			myStack.push(TOP_BUN);
+		}
+	}
+	
+	/**
+	 * This method is used to change out the type of patty that is
+	 * inside the burger.
+	 * @param thePatty - The type of patty we are changing too.
+	 */
+	public void changePatties(String thePatty)	{
+		MyStack<String> tempStack = new MyStack<String>();
+		String item;
+		while(!myStack.isEmpty())	{
+			item = myStack.pop();
+			if(item.equals(BEEF_PATTY) || item.equals(VEGGIE_PATTY) 
+					|| item.equals(CHICKEN_PATTY)) {
+				tempStack.push(thePatty);	
+			} else {
+				tempStack.push(item);
+			}
+		}
+		while(!tempStack.isEmpty())	{
+			myStack.push(tempStack.pop());
+		}
+	}
+	
+	/**
+	 * This method adds additional patties to the burger.
+	 */
+	public void addPatty()	{
+		MyStack<String> tempStack = new MyStack<String>();
+		String item;
+		int numBurgers = 1;
+		if(myWorks) {
+			while(!myStack.isEmpty())	{
+				item = myStack.pop();
+				if(item.equals(PEPPERJACK))	{
+					tempStack.push(BEEF_PATTY);
+					numBurgers++;
+					if(numBurgers != 3)	{
+						tempStack.push(item);
+					}
+				} else	{
+					tempStack.push(item);
+				}
+			} 
+			while(!tempStack.isEmpty())	{
+				myStack.push(tempStack.pop());
+			}
+		} else	{
+			while(!myStack.isEmpty())	{
+				item = myStack.pop();
+				if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY) 
+						|| item.equals(VEGGIE_PATTY) || item.equals(PEPPERJACK))	{
+					numBurgers++;
+					tempStack.push(BEEF_PATTY);
+					tempStack.push(item);
+				} else	{
+					tempStack.push(item);
+				}
+			}
+			while(!tempStack.isEmpty())	{
+				myStack.push(tempStack.pop());
+			}
+		}
+	}
+	
+	/**
+	 * This method adds all items of a chosen category.
+	 * Cheese will add Cheddar, Mozzarella and Pepperjack.
+	 * Veggies will add Lettuce, Tomato, Onions, Pickles and
+	 * Mushrooms.
+	 * Sauces will add Ketchup, Mustard, Mayonnaise and Baron Sauce.
+	 * @param theCategory - the category to be added.
+	 */
+	public void addCategory(String theCategory) {
+		MyStack<String> tempStack = new MyStack<String>();
+		if(!myWorks)	{
+			if(theCategory.equals(CHEESE))	{
+				System.out.println("reached to add cheese");
+				while(!myStack.isEmpty()) {
+					String item = myStack.pop();
+					
+					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
+							|| item.equals(VEGGIE_PATTY))	{
+						tempStack.push(PEPPERJACK);
+						tempStack.push(MOZZARELLA);
+						tempStack.push(CHEDDER);
+						tempStack.push(item);
+					} else	{
+						tempStack.push(item);
+					}
+				}
+				while(!tempStack.isEmpty())	{
+					myStack.push(tempStack.pop());
+				}
+			} else if(theCategory.equals(VEGGIES))	{
+				while(!myStack.isEmpty()) {
+					String item = myStack.pop();
+					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
+							|| item.equals(VEGGIE_PATTY))	{
+						tempStack.push(MUSHROOMS);
+						tempStack.push(PICKLE);
+						tempStack.push(ONIONS);
+						tempStack.push(TOMATO);
+						tempStack.push(LETTUCE);
+						tempStack.push(item);
+					} else	{
+						tempStack.push(item);
+					}
+				}
+				while(!tempStack.isEmpty())	{
+					myStack.push(tempStack.pop());
+				}
+			} else if(theCategory.equals(SAUCE))	{
+				while(!myStack.isEmpty()) {
+					String item = myStack.pop();
+					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
+							|| item.equals(VEGGIE_PATTY))	{
+						tempStack.push(BARON_SAUCE);
+						tempStack.push(MAYONNAISE);
+						tempStack.push(MUSTARD);
+						tempStack.push(KETCHUP);
+						tempStack.push(item);
+					} else	{
+						tempStack.push(item);
+					}
+				}
+				while(!tempStack.isEmpty())	{
+					myStack.push(tempStack.pop());
+				}
+			}
+		}
+	}
+	
+	/**
+	 * This method removes all items of a chosen category.
+	 * Cheese will remove Cheddar, Mozzarella and Pepperjack.
+	 * Veggies will remove Lettuce, Tomato, Onions, Pickles and
+	 * Mushrooms.
+	 * Sauces will remove Ketchup, Mustard, Mayonnaise and Baron Sauce.
+	 * @param theCategory - the category to be added.
+	 */
+	public void removeCategory(String theItem) {
+		MyStack<String> tempStack = new MyStack<String>();
+		switch(theItem) {
+		case CHEESE:
+			while(!myStack.isEmpty())	{
+				String item = myStack.pop();
+				//System.out.println(item);
+				if(!item.equals(CHEDDER) || !item.equals(MOZZARELLA) 
+						|| !item.equals(PEPPERJACK))	{
+					tempStack.push(item);
+				}
+			}
+			while(!tempStack.isEmpty()) {
+				myStack.push(tempStack.pop());
+			}
+			break;
+		case VEGGIES:
+			while(!myStack.isEmpty())	{
+				String item = myStack.pop();
+				//System.out.println(item);
+				if(!(item.equals(LETTUCE) || item.equals(PICKLE) 
+						|| item.equals(TOMATO) || item.equals(ONIONS) 
+						|| item.equals(MUSHROOMS)))	{
+					tempStack.push(item);
+				}
+			}
+			while(!tempStack.isEmpty()) {
+				myStack.push(tempStack.pop());
+			}
+			break;
+		case SAUCE:
+			System.out.println("reached sauces");
+			while(!myStack.isEmpty())	{
+				String item = myStack.pop();
+				//System.out.println(item);
+				if(!(item.equals(KETCHUP) || item.equals(MUSTARD) 
+						|| item.equals(MAYONNAISE) || item.equals(BARON_SAUCE)))	{
+					tempStack.push(item);
+				}
+			}
+			while(!tempStack.isEmpty()) {
+				myStack.push(tempStack.pop());
+			}
+			break;
+		}
+	}
+	
+	/**
+	 * This method adds an ingredient to the stack.
+	 * @param theItem - the item to be added.
+	 */
+	public void addIngredient(String theItem)	{
+		MyStack<String> tempStack = new MyStack<String>();
+		switch(theItem)	{
+		case CHEDDER:
+		case MOZZARELLA:
+		case PEPPERJACK:
+			while(!myStack.isEmpty())	{
+				String item = myStack.pop();
+				if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY) 
+						|| item.equals(VEGGIE_PATTY))	{
+					tempStack.push(theItem);
+					tempStack.push(item);
+				} else	{
+					tempStack.push(item);
+				}
+			} 
+			while(!tempStack.isEmpty())	{
+				myStack.push(tempStack.pop());
+			}
+			break;
+		case LETTUCE:
+		case TOMATO:
+		case ONIONS:
+		case PICKLE:
+		case MUSHROOMS:
+			while(!myStack.isEmpty())	{
+				String item = myStack.pop();
+				if(item.equals(TOP_BUN))	{
+					tempStack.push(item);
+					tempStack.push(theItem);
+				} else	{
+					tempStack.push(item);
+				}
+			} 
+			while(!tempStack.isEmpty())	{
+				myStack.push(tempStack.pop());
+			}
+			break;
+		case KETCHUP:
+		case MUSTARD:
+		case MAYONNAISE:
+		case BARON_SAUCE:
+			while(!myStack.isEmpty())	{
+				String item = myStack.pop();
+				if(item.equals(TOP_BUN))	{
+					tempStack.push(item);
+					tempStack.push(theItem);
+				} else	{
+					tempStack.push(item);
+				}
+			} 
+			while(!tempStack.isEmpty())	{
+				myStack.push(tempStack.pop());
+			}
+			break;
+		}
+	}
+	
+	/**
+	 * This method removes an ingredient from the stack.
+	 * @param theItem - the item to be removed
+	 */
+	public void removeIngredient(String theItem)	{
+		MyStack<String> tempStack = new MyStack<String>();
+		while(!myStack.isEmpty())	{
+			String item = myStack.pop();
+			if(!item.equals(theItem))	{
+				tempStack.push(item);
+			}
+		}
+		while(!tempStack.isEmpty()) {
+			myStack.push(tempStack.pop());
+		}
+	}
+	
+	@Override
+	public String toString()	{
+		return myStack.toString();
+	}
+	
+}
+
+
+

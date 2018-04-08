@@ -89,7 +89,7 @@ public class Burger {
 	/**
 	 * String constant that represents baron sauce.
 	 */
-	private static final String BARON_SAUCE = "Baron Sauce";
+	private static final String BARON_SAUCE = "Baron-Sauce";
 	
 	//Categories
 	/**
@@ -105,7 +105,7 @@ public class Burger {
 	/**
 	 * String constant that represents sauces.
 	 */
-	private static final String SAUCES = "Sauces";
+	private static final String SAUCE = "Sauce";
 	
 	/**
 	 * Custom stack class which creates a stack that will represent the burger.
@@ -124,6 +124,7 @@ public class Burger {
 	 */
 	Burger(boolean theWorks)	{
 		myWorks = theWorks;
+		myStack = new MyStack<String>();
 		if(theWorks)	{ //creates baron burger
 			myStack.push(BOT_BUN);
 			myStack.push(KETCHUP);
@@ -138,7 +139,6 @@ public class Burger {
 			myStack.push(LETTUCE);
 			myStack.push(BARON_SAUCE);
 			myStack.push(MAYONNAISE);
-			myStack.push(TOP_BUN);
 			myStack.push(TOP_BUN);
 			myStack.push(PICKLE);
 		} else	{ //creates basic burger
@@ -176,12 +176,16 @@ public class Burger {
 	public void addPatty()	{
 		MyStack<String> tempStack = new MyStack<String>();
 		String item;
+		int numBurgers = 1;
 		if(myWorks) {
 			while(!myStack.isEmpty())	{
 				item = myStack.pop();
 				if(item.equals(PEPPERJACK))	{
 					tempStack.push(BEEF_PATTY);
-					tempStack.push(item);
+					numBurgers++;
+					if(numBurgers != 3)	{
+						tempStack.push(item);
+					}
 				} else	{
 					tempStack.push(item);
 				}
@@ -192,10 +196,17 @@ public class Burger {
 		} else	{
 			while(!myStack.isEmpty())	{
 				item = myStack.pop();
-				if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY) 
-						|| item.equals(VEGGIE_PATTY))	{
+				if(item.equals(PEPPERJACK)) {
 					tempStack.push(BEEF_PATTY);
 					tempStack.push(item);
+					numBurgers++;
+				} else if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY) 
+						|| item.equals(VEGGIE_PATTY))	{
+					tempStack.push(BEEF_PATTY);
+					numBurgers++;
+					if(numBurgers < 2)	{
+						tempStack.push(item);
+					}
 				} else	{
 					tempStack.push(item);
 				}
@@ -218,13 +229,15 @@ public class Burger {
 		MyStack<String> tempStack = new MyStack<String>();
 		if(!myWorks)	{
 			if(theCategory.equals(CHEESE))	{
+				System.out.println("reached to add cheese");
 				while(!myStack.isEmpty()) {
 					String item = myStack.pop();
+					
 					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
 							|| item.equals(VEGGIE_PATTY))	{
-						tempStack.push(CHEDDER);
-						tempStack.push(MOZZARELLA);
 						tempStack.push(PEPPERJACK);
+						tempStack.push(MOZZARELLA);
+						tempStack.push(CHEDDER);
 						tempStack.push(item);
 					} else	{
 						tempStack.push(item);
@@ -251,7 +264,7 @@ public class Burger {
 				while(!tempStack.isEmpty())	{
 					myStack.push(tempStack.pop());
 				}
-			} else if(theCategory.equals(SAUCES))	{
+			} else if(theCategory.equals(SAUCE))	{
 				while(!myStack.isEmpty()) {
 					String item = myStack.pop();
 					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
@@ -286,6 +299,7 @@ public class Burger {
 		case CHEESE:
 			while(!myStack.isEmpty())	{
 				String item = myStack.pop();
+				//System.out.println(item);
 				if(!item.equals(CHEDDER) || !item.equals(MOZZARELLA) 
 						|| !item.equals(PEPPERJACK))	{
 					tempStack.push(item);
@@ -298,9 +312,10 @@ public class Burger {
 		case VEGGIES:
 			while(!myStack.isEmpty())	{
 				String item = myStack.pop();
-				if(!item.equals(LETTUCE) || !item.equals(TOMATO) 
-						|| !item.equals(ONIONS) || !item.equals(PICKLE) 
-						|| !item.equals(MUSHROOMS))	{
+				//System.out.println(item);
+				if(!(item.equals(LETTUCE) || item.equals(PICKLE) 
+						|| item.equals(TOMATO) || item.equals(ONIONS) 
+						|| item.equals(MUSHROOMS)))	{
 					tempStack.push(item);
 				}
 			}
@@ -308,11 +323,13 @@ public class Burger {
 				myStack.push(tempStack.pop());
 			}
 			break;
-		case SAUCES:
+		case SAUCE:
+			System.out.println("reached sauces");
 			while(!myStack.isEmpty())	{
 				String item = myStack.pop();
-				if(!item.equals(KETCHUP) || !item.equals(MUSTARD) 
-						|| !item.equals(MAYONNAISE) || !item.equals(BARON_SAUCE))	{
+				//System.out.println(item);
+				if(!(item.equals(KETCHUP) || item.equals(MUSTARD) 
+						|| item.equals(MAYONNAISE) || item.equals(BARON_SAUCE)))	{
 					tempStack.push(item);
 				}
 			}
@@ -323,10 +340,72 @@ public class Burger {
 		}
 	}
 	
-	public void addIngredient(String theitem)	{
-		
+	/**
+	 * This method adds an ingredient to the stack.
+	 * @param theItem - the item to be added.
+	 */
+	public void addIngredient(String theItem)	{
+		MyStack<String> tempStack = new MyStack<String>();
+		switch(theItem)	{
+		case CHEDDER:
+		case MOZZARELLA:
+		case PEPPERJACK:
+			while(!myStack.isEmpty())	{
+				String item = myStack.pop();
+				if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY) 
+						|| item.equals(VEGGIE_PATTY))	{
+					tempStack.push(theItem);
+					tempStack.push(item);
+				} else	{
+					tempStack.push(item);
+				}
+			} 
+			while(!tempStack.isEmpty())	{
+				myStack.push(tempStack.pop());
+			}
+			break;
+		case LETTUCE:
+		case TOMATO:
+		case ONIONS:
+		case PICKLE:
+		case MUSHROOMS:
+			while(!myStack.isEmpty())	{
+				String item = myStack.pop();
+				if(item.equals(TOP_BUN))	{
+					tempStack.push(item);
+					tempStack.push(theItem);
+				} else	{
+					tempStack.push(item);
+				}
+			} 
+			while(!tempStack.isEmpty())	{
+				myStack.push(tempStack.pop());
+			}
+			break;
+		case KETCHUP:
+		case MUSTARD:
+		case MAYONNAISE:
+		case BARON_SAUCE:
+			while(!myStack.isEmpty())	{
+				String item = myStack.pop();
+				if(item.equals(TOP_BUN))	{
+					tempStack.push(item);
+					tempStack.push(theItem);
+				} else	{
+					tempStack.push(item);
+				}
+			} 
+			while(!tempStack.isEmpty())	{
+				myStack.push(tempStack.pop());
+			}
+			break;
+		}
 	}
 	
+	/**
+	 * This method removes an ingredient from the stack.
+	 * @param theItem - the item to be removed
+	 */
 	public void removeIngredient(String theItem)	{
 		MyStack<String> tempStack = new MyStack<String>();
 		while(!myStack.isEmpty())	{

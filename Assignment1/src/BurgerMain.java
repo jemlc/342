@@ -7,14 +7,15 @@ public class BurgerMain {
 	private static int counter = -1;
 	public static void main(String[] theArgs) throws FileNotFoundException	{
 		new BurgerMain().testMyStack();
-		File file = new File("C:\\Users\\jerem\\Desktop\\342\\Assignment1\\src\\customer.txt");
-		Scanner sc = new Scanner(file);
+		new BurgerMain().testBurger();
+//		File file = new File("C:\\Users\\jerem\\Desktop\\342\\Assignment1\\src\\customer.txt");
+//		Scanner sc = new Scanner(file);
 		
-		while(sc.hasNextLine()) {
-			counter++;
-			new BurgerMain().parseLine(sc.nextLine());
-		}
-		sc.close();
+//		while(sc.hasNextLine()) {
+//			counter++;
+//			new BurgerMain().parseLine(sc.nextLine());
+//		}
+		//sc.close();
 	}
 	
 	public void parseLine(String line)	{
@@ -28,7 +29,6 @@ public class BurgerMain {
 			String butLine = line.substring(butIndex, line.length());
 			String[] with = omitOrAdd.split(" ");
 			String[] but = butLine.split(" ");
-			System.out.println(omitOrAdd);
 			if(omitOrAdd.contains("no"))	{
 				for(int i = 0; i < with.length; i++)	{
 					if(with[i].equals("Cheese") || with[i].equals("Veggies") 
@@ -83,6 +83,7 @@ public class BurgerMain {
 	}
 	
 	public void testMyStack()	{
+		System.out.println("*******Testing Stack*********");
 		MyStack<String> stack = new MyStack<String>();
 		stack.push("test item");
 		System.out.println(stack.pop());
@@ -97,10 +98,19 @@ public class BurgerMain {
 		System.out.println(stack.isEmpty() == false);
 		System.out.println(stack.peek() == "3");
 		System.out.println(stack.size() == 3);
+		System.out.println();
 	}
 	
-	public void testBurger()	{
-		
+	public void testBurger() throws FileNotFoundException	{
+		System.out.println("********Testing Burger***********");
+		ClassLoader classLoader = getClass().getClassLoader();
+		File file = new File(classLoader.getResource("test.txt").getFile());
+		Scanner sc = new Scanner(file);
+		while(sc.hasNextLine()) {
+			counter++;
+			parseLine(sc.nextLine());
+		}
+		sc.close();
 	}
 	
 	

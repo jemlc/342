@@ -158,8 +158,7 @@ public class Burger {
 		String item;
 		while(!myStack.isEmpty())	{
 			item = myStack.pop();
-			if(item.equals(BEEF_PATTY) || item.equals(VEGGIE_PATTY) 
-					|| item.equals(CHICKEN_PATTY)) {
+			if(item.equals(BEEF_PATTY)) {
 				tempStack.push(thePatty);	
 			} else {
 				tempStack.push(item);
@@ -177,6 +176,7 @@ public class Burger {
 		MyStack<String> tempStack = new MyStack<String>();
 		String item;
 		int numBurgers = 1;
+		boolean hasCheese = false;
 		if(myWorks) {
 			while(!myStack.isEmpty())	{
 				item = myStack.pop();
@@ -200,13 +200,20 @@ public class Burger {
 					tempStack.push(BEEF_PATTY);
 					tempStack.push(item);
 					numBurgers++;
-				} else if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY) 
-						|| item.equals(VEGGIE_PATTY))	{
+					hasCheese = true;
+				} else if(item.equals(BEEF_PATTY))	{
 					tempStack.push(BEEF_PATTY);
 					numBurgers++;
-					if(numBurgers < 2)	{
-						tempStack.push(item);
+					if(hasCheese)	{
+						if(numBurgers < 2)	{
+							tempStack.push(item);
+						} 
+					} else	{
+						if(numBurgers < 3)	{
+							tempStack.push(item);
+						} 
 					}
+					
 				} else	{
 					tempStack.push(item);
 				}
@@ -229,12 +236,10 @@ public class Burger {
 		MyStack<String> tempStack = new MyStack<String>();
 		if(!myWorks)	{
 			if(theCategory.equals(CHEESE))	{
-				System.out.println("reached to add cheese");
 				while(!myStack.isEmpty()) {
 					String item = myStack.pop();
 					
-					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
-							|| item.equals(VEGGIE_PATTY))	{
+					if(item.equals(BEEF_PATTY))	{
 						tempStack.push(PEPPERJACK);
 						tempStack.push(MOZZARELLA);
 						tempStack.push(CHEDDER);
@@ -249,8 +254,7 @@ public class Burger {
 			} else if(theCategory.equals(VEGGIES))	{
 				while(!myStack.isEmpty()) {
 					String item = myStack.pop();
-					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
-							|| item.equals(VEGGIE_PATTY))	{
+					if(item.equals(BEEF_PATTY))	{
 						tempStack.push(MUSHROOMS);
 						tempStack.push(PICKLE);
 						tempStack.push(ONIONS);
@@ -267,8 +271,7 @@ public class Burger {
 			} else if(theCategory.equals(SAUCE))	{
 				while(!myStack.isEmpty()) {
 					String item = myStack.pop();
-					if(item.equals(BEEF_PATTY) || item.equals(CHICKEN_PATTY)
-							|| item.equals(VEGGIE_PATTY))	{
+					if(item.equals(BEEF_PATTY))	{
 						tempStack.push(BARON_SAUCE);
 						tempStack.push(MAYONNAISE);
 						tempStack.push(MUSTARD);
@@ -299,7 +302,6 @@ public class Burger {
 		case CHEESE:
 			while(!myStack.isEmpty())	{
 				String item = myStack.pop();
-				//System.out.println(item);
 				if(!item.equals(CHEDDER) || !item.equals(MOZZARELLA) 
 						|| !item.equals(PEPPERJACK))	{
 					tempStack.push(item);
@@ -312,7 +314,6 @@ public class Burger {
 		case VEGGIES:
 			while(!myStack.isEmpty())	{
 				String item = myStack.pop();
-				//System.out.println(item);
 				if(!(item.equals(LETTUCE) || item.equals(PICKLE) 
 						|| item.equals(TOMATO) || item.equals(ONIONS) 
 						|| item.equals(MUSHROOMS)))	{
@@ -324,10 +325,8 @@ public class Burger {
 			}
 			break;
 		case SAUCE:
-			System.out.println("reached sauces");
 			while(!myStack.isEmpty())	{
 				String item = myStack.pop();
-				//System.out.println(item);
 				if(!(item.equals(KETCHUP) || item.equals(MUSTARD) 
 						|| item.equals(MAYONNAISE) || item.equals(BARON_SAUCE)))	{
 					tempStack.push(item);

@@ -1,8 +1,4 @@
 
-/**
- * Burger Class
- * @author Jeremy Manandic
- */
 public class Burger {
 	//Ingredients
 	//Buns

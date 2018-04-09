@@ -2,34 +2,26 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-/**
- * BurgerMain Class
- * @author Jeremy Manandic
- */
 public class BurgerMain {
 	
-	/**
-	 * Static counter.
-	 */
 	private static int counter = -1;
-	/**
-	 * Main method
-	 * @param theArgs - the arguments
-	 * @throws FileNotFoundException - throws if file cannot be found
-	 */
 	public static void main(String[] theArgs) throws FileNotFoundException	{
 		new BurgerMain().testMyStack();
 		new BurgerMain().testBurger();
-
+//		File file = new File("C:\\Users\\jerem\\Desktop\\342\\Assignment1\\src\\customer.txt");
+//		Scanner sc = new Scanner(file);
+		
+//		while(sc.hasNextLine()) {
+//			counter++;
+//			new BurgerMain().parseLine(sc.nextLine());
+//		}
+		//sc.close();
 	}
 	
-	/**
-	 * Parse through the line of the order
-	 * @param line - the burger being ordered
-	 */
 	public void parseLine(String line)	{
 		Burger burger = new Burger(line.contains("Baron"));
-	
+		
+		
 		if(line.contains("with"))	{
 			int withIndex = line.indexOf("with");
 			int butIndex = line.indexOf("but");
@@ -90,9 +82,6 @@ public class BurgerMain {
 		System.out.println();
 	}
 	
-	/**
-	 * This method tests the stack.
-	 */
 	public void testMyStack()	{
 		System.out.println("*******Testing Stack*********");
 		MyStack<String> stack = new MyStack<String>();
@@ -112,10 +101,6 @@ public class BurgerMain {
 		System.out.println();
 	}
 	
-	/**
-	 * This method tests the burger.
-	 * @throws FileNotFoundException - throws when file is not found.
-	 */
 	public void testBurger() throws FileNotFoundException	{
 		System.out.println("********Testing Burger***********");
 		ClassLoader classLoader = getClass().getClassLoader();

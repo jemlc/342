@@ -1,36 +1,19 @@
-
-/**
- * myStack class
- * @author Jeremy Manandic
- *
- * @param <T>
+/*
+ * MyStack class
+ * Author: Jeremy Manandic
+ * Citations:
  */
 public class MyStack<T> {
 	
-	/**
-	 * Node which is the top of the stack.
-	 */
 	private Node<T> myTop;
 	
-	/**
-	 * empty constructor
-	 */
 	MyStack()	{
 	}
 	
-	/**
-	 * This method determines if the stack is empty.
-	 * @return true if the stack is empty, false otherwise.
-	 */
 	public boolean isEmpty()	{
 		return myTop == null;
 	}
 	
-	/**
-	 * This method pushes the current top and puts the new
-	 * one on top.
-	 * @param item - the item being added.
-	 */
 	public void push(T item)	{
 		if(myTop == null)	{
 			Node<T> createdNode = new Node<T>(item);
@@ -42,10 +25,6 @@ public class MyStack<T> {
 		}
 	}
 	
-	/**
-	 * This method pops the top off and returns the type of item.
-	 * @return - the type of item.
-	 */
 	public T pop()	{
 		T item;
 		if(myTop == null)	{
@@ -57,10 +36,6 @@ public class MyStack<T> {
 		return item;
 	}
 	
-	/**
-	 * This method looks at the top of the stack.
-	 * @return the top of the stack.
-	 */
 	public T peek()	{
 		T item;
 		if(myTop == null)	{
@@ -71,10 +46,6 @@ public class MyStack<T> {
 		return item;
 	}
 	
-	/**
-	 * This method returns the size of the stack.
-	 * @return the size of the stack.
-	 */
 	public int size()	{
 		int nodeCounter = 0;
 		Node<T> currentNode = myTop;
